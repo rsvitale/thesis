@@ -634,9 +634,19 @@ which vanishes since looking at positions $i$ and $i+1$,  $(\epsilon)(-\varphi \
 
  We then have a basis for each $B_n$ described as images of a set of diagrams $D_n \subset \text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ under the map $T$.
 
-\subsection{Showing $D_n$ span $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$.}
+\subsection{Showing $D_n$ span $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$.}
 
-We need to give a visual description of the pictures in $D_n$, and then show if we take an arbitrary picture in $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ we can reduce it to the span of $D_n$. A picture is in $D_n$ if:
+We need to give a topological description of the pictures in $D_n$ and $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$, and then show if we take an arbitrary picture in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ we can reduce it to the span of $D_n$. Let our ambient space be $X=(0,1) \times [0,1)$ and refer to $(0,1) \times \{0\}$ as the \textbf{ground}. An arbitrary element of $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ is an image of some disjoint union of the generators $G_1,G_2$, and $G_3$ in $X$, where strand endpoints are either sent to distinct points on the ground or connected to each other in a way that respects the orientation markings (two strand endpoints can be connected if one has a strand oriented towards the endpoint and the other has a strand oriented away from the endpoint). 
+
+\begin{tikzpicture}
+\draw [color=lightgray, fill=lightgray] (0,0) rectangle (8,4);
+\draw [fill=white] (1.7,0) to [controls = +(90:1.25) and +(90:1.5)] (2.5,1.2) to [controls = +(-90:1) and +(90:1.5)] (3,0);
+\draw [fill=white] (4,0) to [controls = +(90:1) and +(150:1)] (4,2.25) to [controls = +(-30:1) and +(225:0.75)] (6,3) to [controls= +(45:1) and +(50:1)] (6.5,2) to [controls = +(-130:1) and +(90:1)] (7,0);
+
+\draw [-] (0,0) to (8,0);
+\end{tikzpicture}
+
+A picture is in $D_n$ if:
 
 \begin{enumerate}
 \item No part of the diagram is a map from 0 strands to 0 strands (define strand box spaces to clean this up).
