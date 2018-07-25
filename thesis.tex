@@ -214,7 +214,7 @@ If we fix coordinates on $V$, when describing the spaces $B_n$ we are also descr
 
 \section{A 2-dimensional $\mathbb{Z}$-representation over $\mathbb{C}$}
 
-Let $V_n=(\mathbb{C}^n,\phi_n)$ where $\phi_n: \mathbb{Z} \rightarrow GL(\mathbb{C}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}_{\mathbb{Z},V, \mathbb{C}}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
+Let $V_n=(\mathbb{C}^n,\phi_n)$ where $\phi_n: \mathbb{Z} \rightarrow GL(\mathbb{C}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}_{(\mathbb{Z},V, \mathbb{C})}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
 
 \subsection {Presentation of $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ and map into $\text{Alg}_{(\mathbb{Z},V,\mathbb{C})}$}
 
@@ -573,7 +573,7 @@ For example, take $w=RRRLLRL$:
 \end{tikzpicture}
  
 
-The images of $\delta_n$ form our sequence $D_n$. Composing $\delta_n$ with $T$ we get $T_n:P_n \rightarrow B_n$. We want to show the values of $T_n$ are linearly independent. The following fact from linear algebra will be useful.
+The images of $\delta_n$ form our sequence $D_n$. Composing $\delta_n$ with $T$ we get $T_n:P_n \rightarrow B_n$. We want to show the values of $T_n$ are linearly independent, and will use the following lemma.
 
 \begin{lemma} Let $(S,<)$ be a finite ordered set, and $V$ a vector space. If there are maps $f:S \rightarrow V$ and $g:S \rightarrow V^*$ such that for all $x,y \in S$:
 \begin{enumerate}
@@ -629,39 +629,56 @@ so that $g(x)(f(y))$ will have the form
 \draw (4.37,0) node[anchor=north] {$\underbrace{\hspace{4mm}u \hspace{4mm}}_{n-(i+1)}$};
 
 \end{tikzpicture}
-which vanishes since looking at positions $i$ and $i+1$,  $(\epsilon)(-\varphi \otimes \text{Id}_{V})(v_1 \otimes v_1)=\epsilon(v_0^{\ast} \otimes v_1)=0$.
+which vanishes since looking at the value of the map on positions $i$ and $i+1$,  $(\epsilon)(-\varphi \otimes \text{Id}_{V})(v_1 \otimes v_1)=\epsilon(v_0^{\ast} \otimes v_1)=0$.
 \end{proof}
 
  We then have a basis for each $B_n$ described as images of a set of diagrams $D_n \subset \text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ under the map $T$.
 
-\subsection{Showing $D_n$ span $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$.}
+\subsection{Showing $D_n$ spans $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$.}
 
-We need to give a topological description of the pictures in $D_n$ and $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$, and then show if we take an arbitrary picture in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ we can reduce it to the span of $D_n$. Let our ambient space be $X=(0,1) \times [0,1)$ and refer to $(0,1) \times \{0\}$ as the \textbf{ground}. An arbitrary element of $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ is an image of some disjoint union of the generators $G_1,G_2$, and $G_3$ in $X$, where strand endpoints are either sent to distinct points on the ground or connected to each other in a way that respects the orientation markings (two strand endpoints can be connected if one has a strand oriented towards the endpoint and the other has a strand oriented away from the endpoint). 
+We need to give a topological description of the pictures in $D_n$ and show that if we take an arbitrary picture in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ we can reduce it to the span of $D_n$.
+
+\begin{mydef} Let our ambient space be $X=(0,1) \times [0,1)$ and refer to $(0,1) \times \{0\}$ as the \textbf{ground}. Consider a union, $U$, of smooth decorated paths $\alpha_i:[0,1] \rightarrow X$. We refer to the connected component of $X-U$ adjacent to $(0,1) \times \{1\}$ as the \textbf{sky}. We consider $U$ to be a member of $D_n$ if:
+\begin{enumerate}
+\item The images of the $\alpha_i$ do not intersect and the $\alpha_i$ are injective (there are no crossings in U).
+\item For every dot, there is a path from that dot to the sky which does not intersect the image of any $\alpha_i$.
+\item For each $\alpha_i$, either both $\alpha_i(0)$ and $\alpha_i(1)$ are on the ground, or one is on the ground while the other is the position of a dot.
+\item Any image of an $\alpha_i$ has exactly $1$ decoration (a dot or a bracket).
+\item Any bracket is directed towards the leftmost endpoint of a path image.
+
+\item There is a single orientation marking for each intersection of $U$ with the ground, and it is directed away from the ground.
+\end{enumerate}
+\end{mydef}
+
+\begin{prop}
+$D_n$ spans $\text{Diag}_n({\mathbb{Z},V,\mathbb{C}})$.
+\end{prop}
+\begin{proof}
+We perform the following algorithm to reduce an arbitrary picture to $D_n$:
+\begin{enumerate}
+\item Pull all dots to the sky via smooth homotopy, possibly introducing crossings.
+\item Using relation $R_5$ resolve all crossings.
+\item Replace any portions of the picture which do not intersect the ground with a constant using $R_2$ and $R_3$.
+\item Use $R_4$ and $R_1$ to reduce the number of brackets per strand to $1$ and to direct this bracket towards the left endpoint.
+\end{enumerate}
+After steps $1$ and $2$ have been performed, there will be no crossings and all dots will touch the sky, so that items $1$ and $2$ of Definition $4$ are satisfied. After step $3$ item $3$ of Definition $4$ is satisfied, and items $1$ and $2$ are not effected. After step $4$, items $4$ and $5$ of the definition will be satisfied, and no crossings or dots can be created or moved, so all other previous items of the definition are preserved. Item $6$ is satisfied as a result of starting with a diagram in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$. and the reduction of brackets in step $4$.
+\end{proof}
+
+We illustrate the algorithm and definition by an example.
 
 \begin{tikzpicture}
 \draw [color=lightgray, fill=lightgray] (0,0) rectangle (8,4);
 \draw [fill=white] (1.7,0) to [controls = +(90:1.25) and +(90:1.5)] (2.5,1.2) to [controls = +(-90:1) and +(90:1.5)] (3,0);
 \draw [fill=white] (4,0) to [controls = +(90:1) and +(150:1)] (4,2.25) to [controls = +(-30:1) and +(225:0.75)] (6,3) to [controls= +(45:1) and +(50:1)] (6.5,2) to [controls = +(-130:1) and +(90:1)] (7,0);
+\draw [-] (1,0) to [controls = +(90:4.5) and +(-110:4.5)] (1.5,2.25);
+\draw [fill=black] (1.5,2.25) circle (1.5pt);
+
 
 \draw [-] (0,0) to (8,0);
 \end{tikzpicture}
 
-A picture is in $D_n$ if:
 
-\begin{enumerate}
-\item No part of the diagram is a map from 0 strands to 0 strands (define strand box spaces to clean this up).
-\item No dot is enclosed (any dot can be stretched upwards arbitrarily far without crossing a strand)
-\item There are no crossings.
-\item The only decorations that occur are dots and brackets directed towards the left strand of a cap, with only one feature to a path.
-\end{enumerate}
-
-\begin{prop}
-$\text{Diag}_{\mathbb{Z},V,\mathbb{C}}$ is spanned by $D_n$
-\end{prop}
-\begin{proof}
-
-\end{proof}
-The result of this section concludes the exhibition of a bijection $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})} \rightarrow \text{Alg}_{(\mathbb{Z},V,\mathbb{C})}$.
+The result of this section concludes the construction of a bijection $\text{Diag}({\mathbb{Z},V,\mathbb{C}}) \rightarrow \text{Alg}({\mathbb{Z},V,\mathbb{C}})$.
 
 \subsection{The Invariant space $(V^{\oplus n})^{\mathbb{Z}}$ and the Nowicki conjecture}
 \section{A 2-dimensional $\mathbb{Z}_p$-representation over $\mathbb{F}_p$}
