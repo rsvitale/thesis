@@ -117,9 +117,97 @@
 
 \section{Introduction}
 
-Fix a group $G$, a field $k$, and some object $V\in \text{Rep}_k(G)$, the category of $k$-linear representations of $G$. We study $\text{Alg}_{(G,V,k)}$, the full subcategory of $\text{Rep}_k(G)$ whose objects are finite tensor products of $V$ and $V^{\ast}$. We denote by $M_{G,V,k}$ the morphisms of $\text{Alg}_{(G,V,k)}$, and by $P_{G,V,k}$ the planar algebra structure on $M_{G,V,k}$. Our goal will be to give a diagrammatic presentation of $P_{G,V,k}$. In all examples considered it will be true that $V \simeq V^{\ast}$, so we can restrict to studying the spaces $\text{Hom}(V^{\otimes n},V^{\otimes m})$. Further, since $\text{Hom}(A, B \otimes C) \simeq \text{Hom}(A\otimes B^{\ast},C)$ for $A,B,C$ finite dimensional representations of a group, we can restrict to studying the spaces $B_n := \text{Hom}(V^{\otimes n}, \mathbbm{1})$.
+\section{Background}
+\def\marker{$\star$}
 
-Diagrammatically, we have oriented strands connecting function blocks. We will assign an upwards oriented strand to the identity map on $V$ and a downward oriented strand to the identity map on $V^{\ast}$, keeping track of the type of data flowing along a strand and consequently the type of inputs and outputs to function blocks. We have evaluation and coevaluation maps $V^{\ast} \otimes V \xrightarrow{\epsilon} k$, $k \xrightarrow{\eta} V \otimes V^{\ast}$ drawn by arcs connecting appropriately oriented strands. We fix an isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ and draw this between the upward and downward oriented strand.
+An \textbf{oriented planar tangle (OPT)} is a template for combining elements of an \textbf{oriented planar algebra (OPA)}. Input discs and an output disc are connected by oriented strands specifying the type of the inputs and outputs, and a boundary interval is marked (\marker) on each disc to align inputs rotationally. These tangles are defined up to planar isotopy of the strands.
+\begin{center}
+\begin{tikzpicture}
+\coordinate (o) at (0,0);
+\coordinate (o1) at (0.6,0.75);
+\coordinate (o2) at (-0.8,0);
+\coordinate (o3) at (0.4,-1);
+\def\radout{2.4cm}
+\def\radin{0.4cm}
+\draw (o) circle[radius=\radout];
+\draw (o1) circle[radius=\radin];
+\draw (o2) circle[radius=\radin];
+\draw (o3) circle[radius=\radin];
+
+
+
+\begin{scope}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow[scale=1.5]{latex}}}
+    ]
+\draw [postaction={decorate}] ($ (o) + (45:\radout) $) to ($ (o1) + (30:\radin) $);
+\draw [postaction={decorate}] ($ (o1) + (100:\radin) $) to ($ (o) + (80:\radout) $);
+\draw [postaction={decorate}] ($ (o3) + (90:\radin) $) to ($ (o1) + (260:\radin) $);
+\draw [postaction={decorate}] ($ (o2) + (180:\radin) $) to ($ (o) + (180:\radout) $);
+\draw [postaction={decorate}] ($ (o2) + (100:\radin) $) to [controls = +(100:0.7) and +(45:0.7)] ($ (o2) + (45:\radin) $);
+\draw [postaction={decorate}] ($ (o) + (280:\radout) $) to ($ (o3) + (270:\radin) $);
+\draw [postaction={decorate}] ($ (o) + (320:\radout) $) to ($ (o3) + (340:\radin) $);
+\draw [postaction={decorate}] ($ (o) + (230:\radout) $) to ($ (o3) + (210:\radin) $);
+\draw ($(o) + (130:\radout-0.2cm) $) node {\marker};
+\draw ($(o1) + (-40:\radin+0.2cm) $) node {\marker};
+\draw ($(o2) + (140:\radin+0.2cm) $) node {\marker};
+\draw ($(o3) + (240:\radin+0.2cm) $) node {\marker};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+The space of OPTs form an operad, where composition is performed by inserting some tangle into an input disc of another tangle with each \marker \hspace{1mm}aligned. This composition is defined when the number of strands and their orientations match on the input and output discs.
+
+(picture)
+  
+An OPA is a collection of vector spaces on which the operad acts. We group elements of an OPA by type into vector spaces $B_\sigma$ called \textbf{box spaces}, indexed by elements $\sigma \in \{+,-\}^n$. The index carries the information of the number of strands $n$, and the orientations of each strand at the disc boundary, ordered counterclockwise from the \marker \hspace{1mm}($+$ for incoming and $-$ for outgoing). We consider oriented Temperley-Lieb as a first example.
+
+\subsection{Oriented Temperley-Lieb, OTL($\delta$)}
+
+Consider the planar algebra of all oriented tangles with no input discs, and where the value of the oriented circle is $\delta$. The box space $B_{(+,-,+,-)}$ is generated as a vector space by the following $2$ tangles.
+
+(picture of tangles)
+
+\subsection{Oriented Symmetric Planar Algebras (OSPA)}
+In a symmetric planar algebra we want to allow strand crossings. We make the following alteration to the definition of planar isotopy.
+\begin{mydef}
+A \textbf{symmetric isotopy} is a planar isotopy allowing the introduction and removal of transverse strand crossings, Reidemeister moves, and naturality (we can pull function nodes across strands).
+\end{mydef}
+
+\begin{itemize}
+\item picture example of symmetric isotopy
+\item example OTL($\delta$) with symmetric structure is OSTL($\delta$)
+\end{itemize}
+
+\subsection{Oriented Symmetric Planar Algebras Generated by a Set of Vertices}
+
+
+
+\begin{mydef}
+Let $S$ be our generating set of vertices, where each vertex has the data 
+
+%Let $X=(0,1) \times [0,1) \subset \mathbb{R}^2$. Let $U$ be a union of smooth decorated intervals immersed in $X$, whose %endpoints are either at the boundary or at a dot (and not at the same dot or same point on the boundary). These intervals are %locally oriented, and the orientations switch only at brackets. We refer to the connected component of $X-U$ adjacent to
+%(0,1) \times \{1\}$ as the \textbf{sky}, and refer to $(0,1) \times \{0\}$ as the \textbf{ground}.
+\end{mydef}
+
+\begin{itemize}
+\item generic example
+\item free OSPA on dots and brackets
+\item dual of vertex
+\item symmetric and antisymmetric self dual
+\item rotational symmetry/eigenvectors
+\end{itemize}
+
+
+
+\subsection{Disoriented Temperley Lieb, DTL($\delta$)}
+
+
+
+\subsection{Rep(G,V,k) as an OSPA}
+Fix a group $G$, a field $k$, and some object $V\in \text{Rep}_k(G)$, the category of $k$-linear representations of $G$. We study $\text{Alg}(G,V,k)$, the full subcategory of $\text{Rep}_k(G)$ whose objects are finite tensor products of $V$ and $V^{\ast}$. Our goal will be to give a diagrammatic presentation of $\text{Alg}(G,V,k)$, i.e. to give a map of planar algebras $T:\text{Diag}(G,V,k) \rightarrow \text{Alg}(G,V,k)$ for some diagrammatic planar algebra. In all examples considered it will be true that $V \simeq V^{\ast}$, so we can restrict to studying the spaces $\text{Hom}(V^{\otimes n},V^{\otimes m})$. Further, since $\text{Hom}(A, B \otimes C) \simeq \text{Hom}(A\otimes B^{\ast},C)$ for $A,B,C$ finite dimensional representations of a group, we can restrict to studying the spaces $B_n := \text{Hom}(V^{\otimes n}, \mathbbm{1})$.
+
+To construct $\text{Diag}(G,V,k)$ we start with an OSPA generated by some vertex set, and take a quotient to include relations. In defining $T$ we will map an upwards oriented strand to the identity map on $V$ and a downward oriented strand to the identity map on $V^{\ast}$. We have evaluation and coevaluation maps $V^{\ast} \otimes V \xrightarrow{\epsilon} k$, $k \xrightarrow{\eta} V \otimes V^{\ast}$ which will be the image of arcs connecting appropriately oriented strands. We fix an isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ and make this the image under $T$ of the vertex $\varphi$ between an upward and downward oriented strand. (clean these pictures to T(X)=Y form)
 
 \begin{tikzpicture}[scale=0.9]
 \clip (-2,2.9) rectangle (16,5.8);
@@ -128,34 +216,34 @@ Diagrammatically, we have oriented strands connecting function blocks. We will a
     mark=at position 0.5 with {\arrow[scale=1.25]{latex}}}
     ]
 \draw [-,postaction={decorate}] (0,3) to (0,5.5);
-\draw (0.5,4.25) node[scale=1.25] {$\leadsto$};
+\draw (0.5,4.25) node[scale=1.25] {$\xrightarrow{T}$};
 
 \draw [-,postaction={decorate}] (3,5.5) to (3,3);
-\draw (3.5,4.25) node[scale=1.25] {$\leadsto$};
+\draw (3.5,4.25) node[scale=1.25] {$\xrightarrow{T}$};
 
-\draw (1.2,4.25) node {$\text{Id}_V$};
-\draw (4.2,4.25) node {$\text{Id}_{V^{\ast}}$};
+\draw (1.25,4.05) node {$\text{Id}_V$};
+\draw (4.3,4.05) node {$\text{Id}_{V^{\ast}}$};
 
 \draw [-,postaction={decorate}] (7.25,3) to  [controls=+(90:1) and +(90:1)] (5.75,3);
 
 \draw [-,postaction={decorate}] (7.25,5.5) to  [controls=+(-90:1) and +(-90:1)] (5.75,5.5);
 
-\draw (7.75,3.25) node[scale=1.25] {$\leadsto \eta$};
-\draw (7.75,5) node[scale=1.25] {$\leadsto \epsilon$};
+\draw (7.8,3.25) node[scale=1.25] {$\xrightarrow{T} \eta$};
+\draw (7.8,5) node[scale=1.25] {$\xrightarrow{T} \epsilon$};
 
-\draw (9.5,4) rectangle (10,4.5);
-\draw (9.75,4.25) node {$\varphi$};
+\draw (9.55,4) rectangle (10,4.5);
+\draw (9.8,4.25) node {$\varphi$};
 
 \draw [-,postaction={decorate}] (9.75,3) to (9.75,4);
 \draw [-,postaction={decorate}] (9.75,5.5) to (9.75,4.5);
 
-\draw (10.6,4.2) node[scale=1.25] {$\leadsto \varphi$};
+\draw (10.7,4.35) node[scale=1.25] {$\xrightarrow{T} \varphi$};
 
 \end{scope}
 \end{tikzpicture}
 
 
-Using $\varphi$ along with evaluation we can turn outgoing strands into incoming ones, illustrating the isomorphism $\text{Hom}(V^{\otimes n},V^{\otimes m}) \xrightarrow{\sim} \text{Hom}(V^{\otimes (n+m)}, \mathbbm{1})$, and allowing us to focus on pictures where all strands are `attached to the ground'.
+Using $\varphi$ along with evaluation we can turn outgoing strands into incoming ones, illustrating the isomorphism $\text{Hom}(V^{\otimes n},V^{\otimes m}) \xrightarrow{\sim} \text{Hom}(V^{\otimes (n+m)}, \mathbbm{1})$, and allowing us to focus on pictures where all strands are `attached to the ground'. (define ground prior to this)
 
 \begin{tikzpicture}[x=0.75cm,y=0.75cm]
 \clip (-2.5,-.1) rectangle (16,3.4);
@@ -203,76 +291,26 @@ Using $\varphi$ along with evaluation we can turn outgoing strands into incoming
 \end{scope}
 \end{tikzpicture}
 
- Our goal is to determine a minimal generating set of pictures and relations so that the resulting diagrammatic planar algebra, call it $\text{Diag}_{(G,V,k)}$, will be isomorphic to $P_{G,V,k}$. In each example we use the following procedure:
+ Our goal is to determine a minimal generating set of pictures and relations so that the resulting diagrammatic planar algebra, call it $\text{Diag}{(G,V,k)}$, will be isomorphic to $P_{G,V,k}$. In each example we use the following procedure:
  \begin{enumerate}
- \item Define generating pictures and relations for $\text{Diag}_{(G,V,k)}$, and give a map of planar algebras $\text{Diag}_{(G,V,k)} \xrightarrow{T} P_{G,V,k}$.
- \item For each $n$ find a subset $D_n \subset \text{Diag}_{(G,V,k)}$ such that $T(D_n)$ is a basis for $B_n$. Exhibiting such $D_n$ shows that $T$ is surjective, since as argued above $M_{G,V,k}$ is determined by the spaces $B_n$.
- \item Show that an arbitrary picture in $\text{Diag}_{(G,V,k)}$ can be rewritten linearly in terms of elements of the $D_n$ using the presented relations. This shows that $T$ is injective, so that $\text{Diag}_{(G,V,k)} \simeq P_{G,V,k}$ as planar algebras. 
+ \item Define generating pictures and relations for $\text{Diag}{(G,V,k)}$, and give a map of planar algebras $\text{Diag}{(G,V,k)} \xrightarrow{T} P_{G,V,k}$.
+ \item For each $n$ find a subset $D_n \subset \text{Diag}{(G,V,k)}$ such that $T(D_n)$ is a basis for $B_n$. Exhibiting such $D_n$ shows that $T$ is surjective, since as argued above $M_{G,V,k}$ is determined by the spaces $B_n$.
+ \item Show that an arbitrary picture in $\text{Diag}{(G,V,k)}$ can be rewritten linearly in terms of elements of the $D_n$ using the presented relations. This shows that $T$ is injective, so that $\text{Diag}{(G,V,k)} \simeq P_{G,V,k}$ as planar algebras. 
  
  \end{enumerate}
 
-If we fix coordinates on $V$, when describing the spaces $B_n$ we are also describing a subring of vector invariants for $G$, i.e. each $f$ in $B_n$ is also in $(V^{\oplus n})^G=\{f \in k[x_1,\ldots,x_n] : \forall g \in G, f(\bar{x}) = f(g \cdot \bar{x})\}$. This follows from observing that the defining property for an element of $(V^{\oplus n})^G$ is the same as the defining property for a map of $G$ representations from $V^{\otimes n}$ to the trivial representation. Giving a presentation of $\text{Alg}_{(G,V,k)}$ is then related to giving a first and second fundamental theorem of invariant theory for $(V^{\oplus n})^G$, and in each example we discuss this relationship.
+If we fix coordinates on $V$, when describing the spaces $B_n$ we are also describing a subring of vector invariants for $G$, i.e. each $f$ in $B_n$ is also in $(V^{\oplus n})^G=\{f \in k[x_1,\ldots,x_n] : \forall g \in G, f(\bar{x}) = f(g \cdot \bar{x})\}$. This follows from observing that the defining property for an element of $(V^{\oplus n})^G$ is the same as the defining property for a map of $G$ representations from $V^{\otimes n}$ to the trivial representation. Giving a presentation of $\text{Alg}{(G,V,k)}$ is then related to giving a first and second fundamental theorem of invariant theory for $(V^{\oplus n})^G$, and in each example we discuss this relationship.
 
 
-\section{Background}
-\def\marker{$\star$}
-\subsection{Symmetric Oriented Planar Algebras Generated by a Set of Vertices}
-Planar algebras 
-\begin{mydef}
-An \textbf{oriented planar tangle} consists of finitely many input discs, one output disc, non-intersecting oriented strands connecting the boundaries of these discs, and one marked (\marker) boundary interval per disc.
-\end{mydef}
-
-\begin{tikzpicture}
-\coordinate (o) at (0,0);
-\coordinate (o1) at (0.6,0.75);
-\coordinate (o2) at (-0.8,0);
-\coordinate (o3) at (0.4,-1);
-\def\radout{2.4cm}
-\def\radin{0.4cm}
-\draw (o) circle[radius=\radout];
-\draw (o1) circle[radius=\radin];
-\draw (o2) circle[radius=\radin];
-\draw (o3) circle[radius=\radin];
-
-
-
-\begin{scope}[decoration={
-    markings,
-    mark=at position 0.6 with {\arrow[scale=1.5]{latex}}}
-    ]
-\draw [postaction={decorate}] ($ (o) + (45:\radout) $) to ($ (o1) + (30:\radin) $);
-\draw [postaction={decorate}] ($ (o1) + (100:\radin) $) to ($ (o) + (80:\radout) $);
-\draw [postaction={decorate}] ($ (o3) + (90:\radin) $) to ($ (o1) + (260:\radin) $);
-\draw [postaction={decorate}] ($ (o2) + (180:\radin) $) to ($ (o) + (180:\radout) $);
-\draw [postaction={decorate}] ($ (o2) + (100:\radin) $) to [controls = +(100:0.7) and +(45:0.7)] ($ (o2) + (45:\radin) $);
-\draw [postaction={decorate}] ($ (o) + (280:\radout) $) to ($ (o3) + (270:\radin) $);
-\draw [postaction={decorate}] ($ (o) + (320:\radout) $) to ($ (o3) + (340:\radin) $);
-\draw [postaction={decorate}] ($ (o) + (230:\radout) $) to ($ (o3) + (210:\radin) $);
-\draw ($(o) + (130:\radout-0.2cm) $) node {\marker};
-\draw ($(o1) + (-40:\radin+0.2cm) $) node {\marker};
-\draw ($(o2) + (140:\radin+0.2cm) $) node {\marker};
-\draw ($(o3) + (240:\radin+0.2cm) $) node {\marker};
-\end{scope}
-\end{tikzpicture}
-
-
-We get an \textbf{oriented planar operad} using the same composition as the planar operad, but requiring strand orientations to match. An \textbf{oriented planar algebra} is a family of vector spaces $(B_n)_{n \in \mathbb{N}}$ called the $n$-box spaces where any oriented tangle $Z$ is represented by a linear map $Z:B_{n_1} \otimes \cdots \otimes B_{n_i} \rightarrow B_{n_0}$.
-\begin{mydef}
-Let $S$ be our generating set of vertices, where each vertex has the data 
-
-Let $X=(0,1) \times [0,1) \subset \mathbb{R}^2$. Let $U$ be a union of smooth decorated intervals immersed in $X$, whose endpoints are either at the boundary or at a dot (and not at the same dot or same point on the boundary). These intervals are locally oriented, and the orientations switch only at brackets. We refer to the connected component of $X-U$ adjacent to $(0,1) \times \{1\}$ as the \textbf{sky}, and refer to $(0,1) \times \{0\}$ as the \textbf{ground}.
-\end{mydef}
-
-up to symmetric isotopy
 
 \section{A 2-dimensional $\mathbb{Z}$-representation over $\mathbb{C}$}
 
-Let $V_n=(\mathbb{C}^n,\phi_n)$ where $\phi_n: \mathbb{Z} \rightarrow GL(\mathbb{C}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}_{(\mathbb{Z},V, \mathbb{C})}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
+Let $V_n=(\mathbb{C}^n,\phi_n)$ where $\phi_n: \mathbb{Z} \rightarrow GL(\mathbb{C}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}{(\mathbb{Z},V, \mathbb{C})}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
 
-\subsection {Presentation of $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ and map into $\text{Alg}_{(\mathbb{Z},V,\mathbb{C})}$}
+\subsection {Presentation of $\text{Diag}{(\mathbb{Z},V,\mathbb{C})}$ and map into $\text{Alg}{(\mathbb{Z},V,\mathbb{C})}$}
 
 \begin{mydef}
-We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relations below:
+We define $\text{Diag}{(\mathbb{Z},V,\mathbb{C})}$ to be the OSPA quotient $G / E$ for the generating set of vertices $G=\{G_1,G_2,G_3\}$ and relations $E=\{E_1,\dots,E_5\}$ below.
 \end{mydef}
 
 \begin{tikzpicture}
@@ -284,7 +322,7 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 
 \draw [postaction={decorate}] (0,0) circle (17pt);
 \draw (1.2,0) node[scale=1.4] {$=$};
-\draw (1.2,.05) node[anchor=south,scale=0.8] {$R_3$};
+\draw (1.2,.05) node[anchor=south,scale=0.8] {$E_3$};
 \draw (1.5,.05) node[anchor=west,scale=1.4] {$2$};
 \draw [dotted] (-0.9,-1) rectangle (2.25,1);
 
@@ -299,7 +337,7 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 
 \draw [-,postaction={decorate}] (8,3.25) to (8,1.5);
 \draw (7,2.25) node[scale=1.4] {$=$};
-\draw (7,2.3) node[anchor=south,scale=0.8] {$R_1$};
+\draw (7,2.3) node[anchor=south,scale=0.8] {$E_1$};
 
 \draw [dotted] (5.5,1.25) rectangle (8.5,3.5);
 \end{scope}
@@ -318,7 +356,7 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 \draw [-,postaction={decorate}] (5.5,0.75) to (5.5,-0.75);
 
 \draw (4.5,0) node[scale=1.4] {$=$};
-\draw (4.5,0.05) node[scale=0.8,anchor=south] {$R_4$};
+\draw (4.5,0.05) node[scale=0.8,anchor=south] {$E_4$};
 \draw (5,0) node[scale=1.2] {$-$};
 \draw [dotted] (3,-1) rectangle (6,1);
 
@@ -340,7 +378,7 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 \draw [fill=black] (10,3.25) circle (1.5pt);
 \draw [fill=black] (10,1.5) circle (1.5pt);
 \draw (11,2.25) node[scale=1.4] {$=$};
-\draw (11,2.3) node[anchor=south,scale=0.8] {$R_2$};
+\draw (11,2.3) node[anchor=south,scale=0.8] {$E_2$};
 \draw (11.5,2.3) node[scale=1.3,anchor=west] {$0$};
 \draw [dotted] (9.5,1.25) rectangle (12.25,3.5);
 
@@ -385,7 +423,7 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 
 
 \draw (8.5,0) node[scale=1.4] {$=$};
-\draw (8.5,0.05) node[scale=0.8,anchor=south] {$R_5$};
+\draw (8.5,0.05) node[scale=0.8,anchor=south] {$E_5$};
 
 
 
@@ -395,13 +433,13 @@ We present $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ by the generators and relat
 
 
 \begin{prop}
-There is a map of planar algebras $T:\text{Diag}_{(\mathbb{Z},V,\mathbb{C})} \rightarrow \text{Alg}_{(\mathbb{Z},V,\mathbb{C})}$ determined by the values $T(G_1)=v_1^{\ast},T(G_2)=\varphi$ and $T(G_3)=\varphi^{-1}$. 
+There is a map of planar algebras $T:\text{Diag}{(\mathbb{Z},V,\mathbb{C})} \rightarrow \text{Alg}{(\mathbb{Z},V,\mathbb{C})}$ determined by the values $T(G_1)=v_1^{\ast},T(G_2)=\varphi$ and $T(G_3)=\varphi^{-1}$. 
 \end{prop}
 
 \begin{proof}
-We need to show each of $R_1$ through $R_5$ hold in the image of $T$ so that this map is well defined.
+We need to show each of $E_1$ through $E_5$ hold in the image of $T$ so that this map is well defined.
 
-\begin{enumerate}[$R_1$:]
+\begin{enumerate}[$E_1$:]
 \item $\varphi \cdot \varphi^{-1} = \text{Id}_{V^{\ast}}$
 \item $1 \mapsto v_1^{\ast} \mapsto v_0 \mapsto 0$
 \item $\epsilon \cdot \tau \cdot \eta(1) = \epsilon \cdot \tau (v_1 \otimes v_1^{\ast} + v_0 \otimes v_0^{\ast})=\epsilon(v_1^{\ast} \otimes v_1 + v_0^{\ast} \otimes v_0) = 2$
@@ -497,7 +535,7 @@ $\#(P_n)=dim(B_n)$
 
 We will then construct a set of maps in bijection with $P_n$, and show these maps are independent, so that this set forms a basis for $B_n$. We first construct a map from the set of paths to the diagrammatic category.
 \begin{mydef}
-We define a map $\delta_n :P_n \rightarrow \text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$. Identify concatenation in a path word $w$ with composition of diagrams, and identify each letter of the alphabet with a portion of a picture as below, where $\emptyset$ signifies the end of the word.
+We define a map $\delta_n :P_n \rightarrow \text{Diag}{(\mathbb{Z},V,\mathbb{C})}$. Identify concatenation in a path word $w$ with composition of diagrams, and identify each letter of the alphabet with a portion of a picture as below, where $\emptyset$ signifies the end of the word.
 
 \begin{tikzpicture}[x=.6cm,y=.6cm]
 \clip(-3,-0.5) rectangle (20,5);
@@ -685,22 +723,18 @@ so that $g(x)(f(y))$ will have the form
 which vanishes since looking at the value of the map on positions $i$ and $i+1$,  $(\epsilon)(-\varphi \otimes \text{Id}_{V})(v_1 \otimes v_1)=\epsilon(v_0^{\ast} \otimes v_1)=0$.
 \end{proof}
 
- We then have a basis for each $B_n$ described as images of a set of diagrams $D_n \subset \text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ under the map $T$.
+ We then have a basis for each $B_n$ described as images of a set of diagrams $D_n \subset \text{Diag}{(\mathbb{Z},V,\mathbb{C})}$ under the map $T$.
 
 \subsection{Showing $D_n$ spans $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$.}
 
-We need to give a topological description of the pictures in $D_n$ and show that if we take an arbitrary picture in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ we can reduce it to the span of $D_n$.
+Let $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ be the box space of $n$ positively oriented strands. We need to give a description of the pictures in $D_n$, and show that if we take an arbitrary picture in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ we can reduce it to the span of $D_n$.
 
-\begin{mydef} Let $X=(0,1) \times [0,1) \subset \mathbb{R}^2$. Let $U$ be a union of smooth decorated intervals immersed in $X$, up to symmetric isotopy, whose endpoints are either at the boundary or at a dot (and not at the same dot or same point on the boundary). These intervals are locally oriented, and the orientations switch only at brackets. We refer to the connected component of $X-U$ adjacent to $(0,1) \times \{1\}$ as the \textbf{sky}, and refer to $(0,1) \times \{0\}$ as the \textbf{ground}.
-\end{mydef}
 \begin{mydef} We consider $U \in \text{Diag}_n(\mathbb{Z},V,\mathbb{C})$ to be a member of $D_n$ if:
 \begin{enumerate}
 \item There are no crossings in $U$.
 \item For every dot, there is a path from that dot to the sky which does not intersect $U$.
-\item Any path component in $U$ has at most $1$ decoration.
-\item Any bracket is directed towards the leftmost endpoint of a path component.
-
-\item  of $U$ and the ground, $U$ is oriented away from each of its intersections with the ground.
+\item Any path in $U$ has at most $1$ vertex.
+\item Any bracket is directed towards the leftmost endpoint of a path.
 \end{enumerate}
 \end{mydef}
 
@@ -710,41 +744,42 @@ $D_n$ spans $\text{Diag}_n({\mathbb{Z},V,\mathbb{C}})$.
 \begin{proof}
 We perform the following algorithm to reduce an arbitrary picture to $D_n$:
 \begin{enumerate}
-\item Pull all dots to the sky via smooth homotopy, possibly introducing crossings.
-\item Using relation $R_5$ resolve all crossings.
-\item Replace any portions of the picture which do not intersect the ground with a constant using $R_2$ and $R_3$.
-\item Use $R_4$ and $R_1$ to reduce the number of brackets per strand to $1$ and to direct this bracket towards the left endpoint.
+\item Pull all dots to the sky via symmetric isotopy.
+\item Using relation $E_5$ resolve all crossings.
+\item Use $E_1,E_2$, and $E_4$ to reduce the number of vertices on any path to at most $1$ and to direct any bracket towards the left path endpoint.
+\item Replace any circles with a constant using $E_3$.
 \end{enumerate}
-After steps $1$ and $2$ have been performed, there will be no crossings and all dots will touch the sky, so that items $1$ and $2$ of Definition $4$ are satisfied. After step $3$ item $3$ of Definition $4$ is satisfied, and items $1$ and $2$ are not effected. After step $4$, items $4$ and $5$ of the definition will be satisfied, and no crossings or dots can be created or moved, so all other previous items of the definition are preserved. Item $6$ is satisfied as a result of starting with a diagram in $\text{Diag}_n(\mathbb{Z},V,\mathbb{C})$. and the reduction of brackets in step $4$.
+After steps $1$ and $2$ have been performed, there will be no crossings and all dots will touch the sky. Steps $3$ and $4$ will not change these properties as they cannot intoduce any new dots or crossings. After step $3$. At this point we must be left with a diagram that meets items $1$ through $3$ of Definition $4$ and possibly has some oriented circles which don't meet the boundary. These circles can have no vertices since any closed path must have an even number of brackets and no dots, and we ensured in step $3$ that there is at most $1$ vertex along any path. Further we can have no floating intervals since any path with 2 dots has value $0$ using relation $E_2$. Step $4$ removes any circles at the cost of a constant, and our diagram has been reduced to $D_n$.
 \end{proof}
 
 We illustrate the algorithm and definition by an example.
 
-\begin{tikzpicture}
-\draw [color=lightgray, fill=lightgray] (0,0) rectangle (8,4);
-\draw [fill=white] (1.7,0) to [controls = +(90:1.25) and +(90:1.5)] (2.5,1.2) to [controls = +(-90:1) and +(90:1.5)] (3,0);
-\draw [fill=white] (4,0) to [controls = +(90:1) and +(150:1)] (4,2.25) to [controls = +(-30:1) and +(225:0.75)] (6,3) to [controls= +(45:1) and +(50:1)] (6.5,2) to [controls = +(-130:1) and +(90:1)] (7,0);
-\draw [-] (1,0) to [controls = +(90:4.5) and +(-110:4.5)] (1.5,2.25);
-\draw [fill=black] (1.5,2.25) circle (1.5pt);
+%\begin{tikzpicture}
+%\draw [color=lightgray, fill=lightgray] (0,0) rectangle (8,4);
+%\draw [fill=white] (1.7,0) to [controls = +(90:1.25) and +(90:1.5)] (2.5,1.2) to [controls = +(-90:1) and +(90:1.5)] (3,0);
+%\draw [fill=white] (4,0) to [controls = +(90:1) and +(150:1)] (4,2.25) to [controls = +(-30:1) and +(225:0.75)] (6,3) to [controls= +(45:1) and %+(50:1)] (6.5,2) to [controls = +(-130:1) and +(90:1)] (7,0);
+%\draw [-] (1,0) to [controls = +(90:4.5) and +(-110:4.5)] (1.5,2.25);
+%\draw [fill=black] (1.5,2.25) circle (1.5pt);
 
 
-\draw [-] (0,0) to (8,0);
-\end{tikzpicture}
+%\draw [-] (0,0) to (8,0);
+%\end{tikzpicture}
 
+(picture of dot/circle intersection removal)
 
 The result of this section concludes the construction of a bijection $\text{Diag}({\mathbb{Z},V,\mathbb{C}}) \rightarrow \text{Alg}({\mathbb{Z},V,\mathbb{C}})$.
 
 \subsection{The Invariant space $(V^{\oplus n})^{\mathbb{Z}}$ and the Nowicki conjecture}
 \section{A 2-dimensional $\mathbb{Z}_p$-representation over $\mathbb{F}_p$}
 
-Let $V_n=({\mathbb{F}_p}^n,\phi_n)$ where $\phi_n: \mathbb{Z}_p \rightarrow GL({\mathbb{F}_p}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}_{\mathbb{Z},V, \mathbb{C}}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
+Let $V_n=({\mathbb{F}_p}^n,\phi_n)$ where $\phi_n: \mathbb{Z}_p \rightarrow GL({\mathbb{F}_p}^n)$ is defined by $\phi_n(1)=J_n$, and $J_n$ is the Jordan block of dimension $n$ with eigenvalue $1$. In this section we set $V=V_2$ and study $\text{Alg}{\mathbb{Z},V, \mathbb{C}}$. Taking the standard basis of $\mathbb{C}^2$, $v_0 = (1,0)$ and  $v_1 = (0,1)$, we use the isomorphism $\varphi:V \xrightarrow{\sim} V^{\ast}$ defined by $\varphi(v_0)=v_1^{\ast}$, $\varphi(v_1)=-v_0^{\ast}$. We want to describe the spaces $B_n = \text{Hom}(V^{\otimes n},\mathbbm{1} \simeq V_1)$.
 
-\subsection {Presentation of $\text{Diag}_{(\mathbb{Z},V,\mathbb{C})}$ and map into $\text{Alg}_{(\mathbb{Z},V,\mathbb{C})}$}
+\subsection {Presentation of $\text{Diag}{(\mathbb{Z},V,\mathbb{C})}$ and map into $\text{Alg}{(\mathbb{Z},V,\mathbb{C})}$}
 
 We will include all the generators and the relations from (Ex 1) for all $p$ in our presentation. We need one new generator and one new relation which are dependent on $p$.
 
 \begin{mydef}
-We present $D_{\mathbb{Z}_p,V,\mathbb{F}_p}$ by the same generators and relations of Definition 1, along with the new generator $G_4$ and relation $R_5$
+We present $D_{\mathbb{Z}_p,V,\mathbb{F}_p}$ by the same generators and relations of Definition 1, along with the new generator $G_4$ and relation $E_5$
 
 \begin{tikzpicture}
 \clip (0,-2) rectangle (15,4);
