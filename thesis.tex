@@ -790,7 +790,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [fill=black] (5.4+\x0,16.65) circle (1.5pt);
 \draw [color=green,fill=green,opacity=0.3] (5.57+\x0,16.09) circle [radius=\rad];
 
-
+\draw [->,dotted,color=green,thick] (5.57+\x0,16.09) to [bend right] (3.8,14.2);
+\draw [->,dotted,color=green,thick] (5.57+\x0,16.09) to [bend left] (11,14.2);
 %%%%%%%%%%%%%%%%%%%%%%%%% lvl 1
 
 \def\x1{-3};
@@ -804,6 +805,9 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [-] ($ (5.57+\x1,16.09+\y1) + (217:\rad) $) to [controls = +(37:0.12) and +(-66:0.12)] ($ (5.57+\x1,16.09+\y1) + (114:\rad) $);
 \draw [-] ($ (5.57+\x1,16.09+\y1) + (-62:\rad) $) to [controls = +(130:0.2) and +(180:0.15)] ($ (5.57+\x1,16.09+\y1) + (18:\rad) $);
 \draw [color=orange,fill=orange,opacity=0.3] (6.12+\x1,16.15+\y1) circle [radius=\rad];
+\draw [->,dotted,color=orange,thick] (6.12+\x1,16.15+\y1) to [bend right] (1,12);
+\draw [->,dotted,color=orange,thick] (6.12+\x1,16.15+\y1) to [bend left] (5.5,12);
+
 
 \def\x2{6.5};
 \def\y2{-2.4};
@@ -816,6 +820,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [-] ($ (5.57+\x2,16.09+\y2) + (217:\rad) $) to [controls = +(37:0.16) and +(120:0.14)] ($ (5.57+\x2,16.09+\y2) + (-64:\rad) $);
 \draw [-] ($ (5.57+\x2,16.09+\y2) + (114:\rad) $) to [controls = +(-66:0.2) and +(180:0.15)] ($ (5.57+\x2,16.09+\y2) + (18:\rad) $);
 \draw [color=orange,fill=orange,opacity=0.3] (6.12+\x2,16.15+\y2) circle [radius=\rad];
+\draw [->,dotted,color=orange,thick] (6.12+\x2,16.15+\y2) to [bend right] (10.5,12);
+\draw [->,dotted,color=orange,thick] (6.12+\x2,16.15+\y2) to [bend left] (15,12);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% lvl 2
 
@@ -833,7 +839,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [color=blue,fill=blue,opacity=0.3] (6.8+\x3,15.7+\y3) circle [radius=\rad];
 \draw [-] ($ (6.12+\x3,16.15+\y3) + (185:\rad) $) to [controls = +(50:0.2) and +(120:0.1)] ($ (6.12+\x3,16.15+\y3) + (-96:\rad) $);
 \draw [-] ($ (6.12+\x3,16.15+\y3) + (50:\rad) $) to [controls = +(190:0.2) and +(155:0.2)] ($ (6.12+\x3,16.15+\y3) + (-11:\rad) $);
-
+\draw [->,dotted,color=blue,thick] (6.8+\x3,15.7+\y3) to [bend right] (-1,9.5);
+\draw [->,dotted,color=blue,thick] (6.8+\x3,15.7+\y3) to [bend left] (2,9.5);
 
 \def\x4{-0.8};
 \def\y4{-4.8};
@@ -849,6 +856,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [color=blue,fill=blue,opacity=0.3] (6.8+\x4,15.7+\y4) circle [radius=\rad];
 \draw [-] ($ (6.12+\x4,16.15+\y4) + (183:\rad) $) to [controls = +(45:0.2) and +(190:0.2)] ($ (6.12+\x4,16.15+\y4) + (52:\rad) $);
 \draw [-] ($ (6.12+\x4,16.15+\y4) + (-94:\rad) $) to [controls = +(125:0.2) and +(150:0.25)] ($ (6.12+\x4,16.15+\y4) + (-12:\rad) $);
+\draw [->,dotted,color=blue,thick] (6.8+\x4,15.7+\y4) to [bend right] (3.8,9.5);
+\draw [->,dotted,color=blue,thick] (6.8+\x4,15.7+\y4) to [bend left] (6.8,9.5);
 
 
 \def\x5{4.2};
@@ -865,6 +874,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [color=blue,fill=blue,opacity=0.3] (6.8+\x5,15.7+\y5) circle [radius=\rad];
 \draw [-] ($ (6.12+\x5,16.15+\y5) + (172:\rad) $) to [controls = +(0:0.2) and +(120:0.2)] ($ (6.12+\x5,16.15+\y5) + (-95:\rad) $);
 \draw [-] ($ (6.12+\x5,16.15+\y5) + (52:\rad) $) to [controls = +(190:0.2) and +(150:0.25)] ($ (6.12+\x5,16.15+\y5) + (-12:\rad) $);
+\draw [->,dotted,color=blue,thick] (6.8+\x5,15.7+\y5) to [bend right] (8.8,9.5);
+\draw [->,dotted,color=blue,thick] (6.8+\x5,15.7+\y5) to [bend left] (11.8,9.5);
 
 \def\x6{9};
 \def\y6{-4.8};
@@ -880,6 +891,8 @@ We illustrate the algorithm and definition with the example \hspace{2mm}
 \draw [color=blue,fill=blue,opacity=0.3] (6.8+\x6,15.7+\y6) circle [radius=\rad];
 \draw [-] ($ (6.12+\x6,16.15+\y6) + (170:\rad) $) to [controls = +(-20:0.2) and +(190:0.2)] ($ (6.12+\x6,16.15+\y6) + (52:\rad) $);
 \draw [-] ($ (6.12+\x6,16.15+\y6) + (-94:\rad) $) to [controls = +(125:0.2) and +(150:0.25)] ($ (6.12+\x6,16.15+\y6) + (-12:\rad) $);
+\draw [->,dotted,color=blue,thick] (6.8+\x6,15.7+\y6) to [bend right] (13.8,9.5);
+\draw [->,dotted,color=blue,thick] (6.8+\x6,15.7+\y6) to [bend left] (16.8,9.5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% lvl 3
 
