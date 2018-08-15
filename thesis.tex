@@ -1142,7 +1142,7 @@ We will include all the generators and the relations from (Ex 1) for all $p$ in 
 We present $\text{Diag}{(\mathbb{Z}_p,V,\mathbb{F}_p)}$ by the same generators and relations of Definition 3, along with the new generator $G_4$ and relation $E_5$
 
 \begin{tikzpicture}
-\clip (0,-2) rectangle (15,4);
+\clip (0,-2.5) rectangle (15,4);
 \begin{scope}[decoration={
 	markings,
 	mark=at position 0.3 with {\arrow[scale=1.25]{latex}}}
@@ -1158,31 +1158,77 @@ We present $\text{Diag}{(\mathbb{Z}_p,V,\mathbb{F}_p)}$ by the same generators a
 \draw (0.75+\x,2.25) node {$G_4:$};
 \draw (3.2+\x,2) node[scale=1.25] {$\cdots$};
 \draw (3+\x,1) node {$\underbrace{\hspace{32mm}}_{2p-1}$};
-\draw [fill=black] (3+\x,3) circle (2.5pt);
+\draw [fill=black] (3+\x,3) circle (2.25pt);
+\end{scope}
 
-\draw (1,-2) to [controls= +(90:0.75) and +(90:0.75)] (2,-2);
-\draw (0.5,-2) to [controls= +(90:2) and +(90:2)] (2.5,-2);
+
+\begin{scope}[decoration={
+	markings,
+	mark=at position 0.4 with {\arrow[thick]{[}},
+	mark=at position 0.2 with {\arrow[>=latex]{>}},
+	mark=at position 0.6 with {\arrow[>=latex]{<}}}
+	]
+\draw [postaction={decorate}] (1,-2) to [controls= +(90:0.75) and +(90:0.75)] (2,-2);
+\draw [postaction={decorate}] (0.5,-2) to [controls= +(90:2) and +(90:2)] (2.5,-2);
 
 
 \foreach \x in {0,1,2}
 	\draw (1.5,-0.8-0.2*\x) node[scale=1.25] {$\cdot$};
 
-
-
-\draw (4,-2) to (4,-1);
-\draw (4.5,-2) to (5,-1);
-\draw (5.5,-2) to (5,-1);
-
-\draw (6.5,-2) to (7,-1);
-\draw (7.5,-2) to (7,-1);
-\draw (8,-2) to (8,-1);
 \end{scope}
+
+
+\begin{scope}[decoration={
+	markings,
+	mark=at position 0.3 with {\arrow{latex}}}
+	]
+
+
+\def\x{2.5};
+\def\y{-3.5};
+
+
+\draw [-,postaction={decorate}] (2+\x,1.5+\y) to [controls = +(90:0.5) and +(185:0.75)] (3+\x,2.75+\y);
+\draw [-,postaction={decorate}] (2.5+\x,1.5+\y) to [controls = +(90:0.5) and +(200:0.5)] (3+\x,2.75+\y);
+\draw [-,postaction={decorate}] (4+\x,1.5+\y) to [controls = +(90:0.5) and +(-5:0.75)] (3+\x,2.75+\y);
+\draw [fill=black] (3+\x,2.75+\y) circle (1.75pt);
+\draw (3.15+\x, 2+\y) node {$\cdots$};
+
+\def\x{5.5};
+
+
+\draw [-,postaction={decorate}] (2+\x,1.5+\y) to [controls = +(90:0.5) and +(185:0.75)] (3+\x,2.75+\y);
+\draw [-,postaction={decorate}] (2.5+\x,1.5+\y) to [controls = +(90:0.5) and +(200:0.5)] (3+\x,2.75+\y);
+\draw [-,postaction={decorate}] (4+\x,1.5+\y) to [controls = +(90:0.5) and +(-5:0.75)] (3+\x,2.75+\y);
+\draw [fill=black] (3+\x,2.75+\y) circle (1.75pt);
+\draw (3.15+\x, 2+\y) node {$\cdots$};
+
+\draw (3.25,-1.5) node {$=$};
+\draw (7,-1.5) node {$+$};
+
+\end{scope}
+
+\begin{scope}[decoration={
+	markings,
+	mark=at position 0.5 with {\arrow{latex}}}
+	]
+\draw [-,postaction={decorate}] (4,-2) to (4,-1);
+\draw [fill=black] (4,-1) circle (1.5pt);
+\draw [-,postaction={decorate}] (10,-2) to (10,-1);
+\draw [fill=black] (10,-1) circle (1.5pt);
+
+\end{scope}
+
+\draw (11.25,-2) rectangle (12.75,-1);
+\draw (12,-1.5) node {$DTL(2)$};
+
+
 \end{tikzpicture}
 \end{mydef}
 
-Before discussing the map into Alg we need the following lemma.
+Before discussing the map into Alg we need the following proposition.
 
-\begin{lemma} Consider $V$ with $\mathbb{F}_q^{+}$ ($q=p^n$) action given by $x\cdot v_0 = v_0,x \cdot v_1 = xv_0 + v_1$. Then $V^{\otimes{n}}$ has basis $B =\{0,1\}^{\times n}\overset{\sim}{\longleftrightarrow} \{w_1 \otimes \cdots \otimes w_n | w_i \in \{v_0,v_1\}\}$. Let $l(v) = \sum_v{v_i}$ and define a linear map $\varphi_n$ on $B$ for any $n \in \mathbb{N}, q = p^i$:
+\begin{prop} Consider $V$ with $\mathbb{F}_q^{+}$ ($q=p^n$) action given by $x\cdot v_0 = v_0,x \cdot v_1 = xv_0 + v_1$. Then $V^{\otimes{n}}$ has basis $B =\{0,1\}^{\times n}\overset{\sim}{\longleftrightarrow} \{w_1 \otimes \cdots \otimes w_n | w_i \in \{v_0,v_1\}\}$. Let $l(v) = \sum_v{v_i}$ and define a linear map $\varphi_n$ on $B$ for any $n \in \mathbb{N}, q = p^i$:
 $$
 \varphi_n(v) = \left\{
         \begin{array}{ll}
@@ -1229,7 +1275,7 @@ $$
 $$ 
 
 \end{proof}
-\end{lemma}
+\end{prop}
 
 
 
